@@ -21,7 +21,7 @@ Return ONLY the visual description.
 `;
 
   const response = await client.messages.create({
-    model: "claude-3-haiku-20240307",
+    model: "THIS_IS_A_TEST_MODEL_DO_NOT_EXIST",
     max_tokens: 300,
     temperature: 0.3,
     messages: [
