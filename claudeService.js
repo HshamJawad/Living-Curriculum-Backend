@@ -1,4 +1,3 @@
-// force rebuild - haiku model
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
@@ -21,7 +20,7 @@ Return ONLY the visual description.
 `;
 
   const response = await client.messages.create({
-    model: "THIS_IS_A_TEST_MODEL_DO_NOT_EXIST",
+    model: "claude-3-haiku-20240307",
     max_tokens: 300,
     temperature: 0.3,
     messages: [

@@ -1,8 +1,8 @@
 {
   "name": "living-curriculum-backend",
   "version": "1.0.0",
-  "description": "Backend for AI-supported Living Curriculum (Images + Assessment)",
   "type": "module",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
