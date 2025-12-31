@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { generateVisualPrompt } from "./claudeService.js";
 
 dotenv.config();
 
@@ -18,17 +19,27 @@ app.post("/generate-image", async (req, res) => {
   const { stepDescription } = req.body;
 
   if (!stepDescription) {
-    return res.status(400).json({ error: "stepDescription is required" });
+    return res.status(400).json({
+      error: "stepDescription is required",
+    });
   }
 
   try {
-    const placeholderImage =
-      "https://via.placeholder.com/900x500.png?text=AI+Illustration+Coming+Soon";
-    res.json({ imageUrl: placeholderImage });
+    const visualPrompt = await generateVisualPrompt(stepDescription);
+
+    // TEMPORARY: return text prompt for review
+    res.json({
+      visualPrompt: visualPrompt,
+    });
+
   } catch (error) {
-    res.status(500).json({ error: "Failed to generate illustration" });
+    console.error("Claude error:", error);
+    res.status(500).json({
+      error: "Failed to generate visual prompt",
+    });
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
